@@ -1,0 +1,39 @@
+.profile_picture{
+	width: 30px;
+	height: 30px;
+	border-raidus:50%;
+}
+
+.logoContainer{
+	height: 100px;
+	background: #f8f9fa;
+}
+
+.logoContainer #logo{
+	float: left;
+	width: 100px;
+	height: 95px;
+}
+
+.logoContainer #dataTitle{
+	margin-top: 23px;
+}
+
+.logoContainer #logo{
+	position: relative;
+}
+
+
+/* search css */
+.search-container{
+	position: relative;
+}
+
+.search-result{
+	position: absolute;
+	background: white;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid gray;
+	display: none;
+}

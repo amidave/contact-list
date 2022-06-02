@@ -1,0 +1,64 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+  <meta charset="utf-8">
+  <title>Contact List</title>
+</head>
+
+<body>
+  <script src="js/scripts.js"></script>
+  <section>
+  	
+  	<div class="card mr-3 ml-3">
+  		<div class="card-body">
+  		<div style="border: 1px solid black;" class="logoContainer">
+		  	<image id="logo" src="/img/Kuehne+Nagel image.png" style="display:inline" class="center" />
+		  	<h1 id="dataTitle" class="text-center">Contacts</h1>
+		  </div>
+  			
+  			<!-- search -->
+  			<div class="search-container my-4">
+				  
+  				<input type="hidden" id="currentPg" th:value="${currentPage}"/>
+  				<input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="Search contact.."/>
+  				<div class="search-result">
+  					<!-- search result goes here -->
+  				</div>
+  			</div>
+  			
+  			<table class="table">
+				  <thead class="thead-light">
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Name</th>
+					    </tr>
+				  </thead>
+				  <tbody>
+					    <tr th:each="c : ${contacts}">
+					      <th scope="row" th:text="${c.id}">1</th>
+					      <td>
+					      	  <img class="profile_picture" th:src="${c.url}" alt="profile picture" />
+						      <span th:text="${c.name}"></span>
+						  </td>
+					    </tr>
+				  </tbody>
+			</table>
+  			
+  		</div>
+  	
+	  	<div>
+		  	<nav aria-label="Page navigation example">
+				  <ul class="pagination">
+				    <li th:if="${currentPage != 0}" class="page-item"><a th:href="@{'/contacts/'+${currentPage-1}}" class="page-link" href="#">Previous</a></li>
+				    <li th:classappend="${currentPage==i-1?'active':''}" th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item">
+				    	<a th:href="@{'/contacts/'+${i-1}}" class="page-link" href="#">
+				    		<span th:text="${i}"></span>
+				    	</a></li>
+				    <li th:if="${currentPage+1 != totalPages}" class="page-item"><a th:href="@{'/contacts/'+${currentPage+1}}" class="page-link" href="#">Next</a></li>
+				  </ul>
+			</nav>
+	  	</div>
+  	 </div>
+  </section>
+</html>
